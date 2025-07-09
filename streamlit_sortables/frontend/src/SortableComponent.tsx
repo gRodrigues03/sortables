@@ -268,9 +268,6 @@ function SortableComponentWrapper(props: ComponentProps) {
   });
   return () => cancelAnimationFrame(raf);
 }, []);
-
-  return () => clearTimeout(timeout);
-}, []);
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>
