@@ -183,10 +183,12 @@ function SortableComponent(props: SortableComponentProps) {
         items.map(item => ({ item, header, color: itemColors[item] || "" }))
       );
 
-      Streamlit.setComponentValue(pivotedItems);
 
-      setItems(newItems);
+
+
       if (!isSameOrder(clonedItems, newItems)) {
+        setItems(newItems);
+        Streamlit.setComponentValue(pivotedItems);
         Streamlit.setFrameHeight();
       }
     }
