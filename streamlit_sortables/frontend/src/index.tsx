@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SortableComponent from "./SortableComponent";
+import SortableComponentWrapper from "./SortableComponent";
 
 ReactDOM.render(
     <SortableComponentWrapper />,
