@@ -95,7 +95,7 @@ def sort_items(items: list[T],  header: Optional[str]=None, multi_containers: bo
     if multi_containers:
         return component_value
     else:
-        return component_value[0]['items']
+        return component_value
 
 
 # Add some test code to play with the component while it's in development.
