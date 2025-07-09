@@ -3,6 +3,6 @@ import ReactDOM from "react-dom";
 import SortableComponent from "./SortableComponent";
 
 ReactDOM.render(
-    <SortableComponent />,
+    <SortableComponentWrapper />,
     document.getElementById("root")
 );
