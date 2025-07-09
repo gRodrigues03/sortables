@@ -160,8 +160,8 @@ function SortableComponent(props: SortableComponentProps) {
         }
       })
 
-      const newItemsPivot = newItemsNested.flatMap(({ header, items }) =>
-  items.map((item) => ({ item, header }))
+      const newItemsPivot = newItems.flatMap(({ header, items }) =>
+  items.map(item => ({ item, header }))
 );
 
       setItems(newItems);
