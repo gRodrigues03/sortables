@@ -263,9 +263,11 @@ function SortableComponentWrapper(props: ComponentProps) {
   const items = args.items;
   const className = 'sortable-component ' + args.direction;
   useEffect(() => {
-  const timeout = setTimeout(() => {
+  const raf = requestAnimationFrame(() => {
     Streamlit.setFrameHeight();
-  }, 50);
+  });
+  return () => cancelAnimationFrame(raf);
+}, []);
 
   return () => clearTimeout(timeout);
 }, []);
