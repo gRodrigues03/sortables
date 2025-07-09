@@ -46,7 +46,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     const className = `btn shadow-none sortable-item ${props.isActive ? "active" : ""} ${sortableProps.isDragging ? "dragging" : ""}`;
 
     return (
-      <li className={className} ref={sortableProps.setNodeRef} style={style} {...sortableProps.attributes} {...sortableProps.listeners}>
+      <li className={className} data-testid={props.children ? props.children : null} ref={sortableProps.setNodeRef} style={style} {...sortableProps.attributes} {...sortableProps.listeners}>
         {props.children ? props.children : null}
       </li>
     )
