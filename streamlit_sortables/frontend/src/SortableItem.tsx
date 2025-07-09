@@ -8,7 +8,9 @@ export interface SortableItemProps {
   id: string,
   isActive?: boolean,
   children?: ReactNode,
-  isOverlay?: boolean
+  isOverlay?: boolean,
+  color?: string,
+  onColorChange?: (color: string) => void;
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
@@ -47,7 +49,9 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   };
 
   const handleColorChange = (color: string) => {
-    setItemColor(color);
+     if (props.onColorChange) {
+      props.onColorChange(color);
+    }
     setContextMenuVisible(false);
   };
 
@@ -64,7 +68,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     transform: sortableProps.transform ? CSS.Transform.toString(sortableProps.transform) : undefined,
     transition: sortableProps.transition,
     cursor: sortableProps.isDragging ? 'grabbing' : 'grab',
-    backgroundColor: itemColor
+    backgroundColor: props.color || ""
   };
 
   const className = `btn shadow-none sortable-item ${props.isActive ? "active" : ""} ${sortableProps.isDragging ? "dragging" : ""}`;

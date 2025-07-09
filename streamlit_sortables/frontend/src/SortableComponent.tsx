@@ -74,6 +74,7 @@ function SortableComponent(props: SortableComponentProps) {
   const [items, setItems] = useState(props.items);
   const [clonedItems, setClonedItems] = useState(props.items);
   const [activeItem, setActiveItem] = useState(null);
+  const [itemColors, setItemColors] = useState<Record<string, string>>({});
 
   const sensors = useSensors(
     useSensor(MouseSensor, {
@@ -106,7 +107,14 @@ function SortableComponent(props: SortableComponentProps) {
               {
                 items.map(item => {
                   return (
-                    <SortableItem key={item} id={item} isActive={item === activeItem}>{item}</SortableItem>
+                    <SortableItem
+                    key={item}
+                    id={item}
+                    isActive={item === activeItem}
+                    color={itemColors[item] || ""}
+                    onColorChange={(color) => {
+                    setItemColors(prev => ({ ...prev, [item]: color }));
+                    }}>{item}</SortableItem>
                   )
                 })
               }
@@ -166,7 +174,10 @@ function SortableComponent(props: SortableComponentProps) {
 
       setItems(newItems);
       if (!isSameOrder(clonedItems, newItems)) {
-        Streamlit.setComponentValue(newItemsPivot);
+        Streamlit.setComponentValue({
+  items: newItemsPivot,
+  colors: itemColors
+});
         Streamlit.setFrameHeight();
       }
     }
