@@ -186,9 +186,9 @@ function SortableComponent(props: SortableComponentProps) {
       Streamlit.setComponentValue(pivotedItems);
 
       setItems(newItems);
-      if (!isSameOrder(clonedItems, newItems)) {
-        Streamlit.setFrameHeight();
-      }
+//       if (!isSameOrder(clonedItems, newItems)) {
+//         Streamlit.setFrameHeight();
+//       }
     }
   }
 
