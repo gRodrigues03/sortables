@@ -79,10 +79,8 @@ function SortableComponent(props: SortableComponentProps) {
   const pivotedAndColors = items.flatMap(({ header, items }) =>
     items.map(item => ({ item, header, color: itemColors[item] || "" }))
   );
-
   Streamlit.setComponentValue(pivotedAndColors);
-  Streamlit.setFrameHeight();
-}, [items, itemColors]);
+}, [itemColors]);
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint: {
@@ -180,6 +178,12 @@ function SortableComponent(props: SortableComponentProps) {
           }
         }
       })
+
+      const pivotedItems = newItems.flatMap(({ header, items }) =>
+        items.map(item => ({ item, header, color: itemColors[item] || "" }))
+      );
+
+      Streamlit.setComponentValue(pivotedItems);
 
       setItems(newItems);
       if (!isSameOrder(clonedItems, newItems)) {
