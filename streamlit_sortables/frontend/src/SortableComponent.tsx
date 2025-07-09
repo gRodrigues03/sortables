@@ -146,20 +146,43 @@ function SortableComponent(props: SortableComponentProps) {
       const activeItemIndex = container.items.indexOf(active.id);
       const overItemIndex = container.items.indexOf(over.id);
 
-      const newItems = items.flatMap(({ header, items }, index) => {
-  const currentItems = index === activeContainerIndex
-    ? arrayMove(items, activeItemIndex, overItemIndex)
-    : items;
+      const newItems = items.map(({ header, items }, index) => {
+        if (index === activeContainerIndex) {
+          return {
+              test: 'bruh',
+            header: header,
+            items: arrayMove(items, activeItemIndex, overItemIndex)
+          }
+        } else {
+          return {
+              test: 'bruh',
+            header: header,
+            items: items
+          }
+        }
+      })
 
-  return currentItems.map(item => ({
-    item,
-    header
-  }));
-});
+      const pivotedItems = (() => {
+          const itemMap = new Map<string, string[]>();
+
+          newItems.forEach(({ header, items }) => {
+            items.forEach(item => {
+              if (!itemMap.has(item)) {
+                itemMap.set(item, []);
+              }
+              itemMap.get(item).push(header);
+            });
+          });
+
+          return Array.from(itemMap.entries()).map(([item, headers]) => ({
+            item,
+            headers
+          }));
+        })();
 
       setItems(newItems);
       if (!isSameOrder(clonedItems, newItems)) {
-        Streamlit.setComponentValue(newItems);
+        Streamlit.setComponentValue(pivotedItems);
         Streamlit.setFrameHeight();
       }
     }
