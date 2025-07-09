@@ -146,19 +146,16 @@ function SortableComponent(props: SortableComponentProps) {
       const activeItemIndex = container.items.indexOf(active.id);
       const overItemIndex = container.items.indexOf(over.id);
 
-      const newItems = items.map(({ header, items }, index) => {
-        if (index === activeContainerIndex) {
-          return {
-            header: header,
-            items: arrayMove(items, activeItemIndex, overItemIndex)
-          }
-        } else {
-          return {
-            header: header,
-            items: items
-          }
-        }
-      })
+      const newItems = items.flatMap(({ header, items }, index) => {
+  const currentItems = index === activeContainerIndex
+    ? arrayMove(items, activeItemIndex, overItemIndex)
+    : items;
+
+  return currentItems.map(item => ({
+    item,
+    header
+  }));
+});
 
       setItems(newItems);
       if (!isSameOrder(clonedItems, newItems)) {
