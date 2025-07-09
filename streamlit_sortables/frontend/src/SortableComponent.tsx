@@ -186,9 +186,9 @@ function SortableComponent(props: SortableComponentProps) {
       Streamlit.setComponentValue(pivotedItems);
 
       setItems(newItems);
-//       if (!isSameOrder(clonedItems, newItems)) {
-//         Streamlit.setFrameHeight();
-//       }
+      if (!isSameOrder(clonedItems, newItems)) {
+        Streamlit.setFrameHeight();
+      }
     }
   }
 
@@ -262,12 +262,7 @@ function SortableComponentWrapper(props: ComponentProps) {
   const args: StreamlitArguments = props.args;
   const items = args.items;
   const className = 'sortable-component ' + args.direction;
-  useEffect(() => {
-  const raf = requestAnimationFrame(() => {
-    Streamlit.setFrameHeight();
-  });
-  return () => cancelAnimationFrame(raf);
-}, []);
+  useEffect(() => Streamlit.setFrameHeight());
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>

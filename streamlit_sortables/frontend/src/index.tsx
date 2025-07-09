@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import SortableComponent from "./SortableComponent";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <App >
     <SortableComponent />
-  </React.StrictMode>,
+  </App >,
   document.getElementById("root")
 );
