@@ -265,7 +265,7 @@ function SortableComponentWrapper(props: ComponentProps) {
   useEffect(() => {
   const timeout = setTimeout(() => {
     Streamlit.setFrameHeight();
-  }, 0);
+  }, 50);
 
   return () => clearTimeout(timeout);
 }, []);
