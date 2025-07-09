@@ -262,8 +262,6 @@ function SortableComponentWrapper(props: ComponentProps) {
   const args: StreamlitArguments = props.args;
   const items = args.items;
   const className = 'sortable-component ' + args.direction;
-  useEffect(() => Streamlit.setFrameHeight());
-
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>
