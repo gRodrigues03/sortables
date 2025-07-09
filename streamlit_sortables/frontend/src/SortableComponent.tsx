@@ -145,6 +145,15 @@ function SortableComponent(props: SortableComponentProps) {
     setItems(clonedItems);
   }
 
+  useEffect(() => {
+  const pivotedAndColors = items.flatMap(({ header, items }) =>
+    items.map(item => ({ item, header, color: itemColors[item] || "" }))
+  );
+
+  Streamlit.setComponentValue(pivotedAndColors);
+  Streamlit.setFrameHeight();
+}, [items, itemColors]);
+
   function handleDragEnd(event: any) {
     setActiveItem(null);
     const { active, over } = event;
@@ -174,16 +183,8 @@ function SortableComponent(props: SortableComponentProps) {
         }
       })
 
-      const newItemsPivot = newItems.flatMap(({ header, items }) =>
-  items.map(item => ({ item, header }))
-);
-
       setItems(newItems);
       if (!isSameOrder(clonedItems, newItems)) {
-        Streamlit.setComponentValue({
-  items: newItemsPivot,
-  colors: itemColors
-});
         Streamlit.setFrameHeight();
       }
     }
