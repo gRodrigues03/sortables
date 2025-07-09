@@ -1,8 +1,8 @@
-import React, {ReactNode, FunctionComponent} from 'react';
-import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
+import React, { ReactNode, FunctionComponent, useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
-import './SortableComponent.css'
+import './SortableComponent.css';
 
 export interface SortableItemProps {
   id: string,
@@ -12,42 +12,98 @@ export interface SortableItemProps {
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
-    const {
-      attributes,
-      listeners,
-      setNodeRef,
-      transform,
-      transition
-    } = useSortable({id: props.id});
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition
+  } = useSortable({ id: props.id });
 
-    // If overlay, override the sortable properties
-    const sortableProps = props.isOverlay ? {
-      attributes: {},
-      listeners: {},
-      setNodeRef: null,
-      transform: null,
-      transition: undefined,
-      isDragging: true
-    } : {
-      attributes,
-      listeners,
-      setNodeRef,
-      transform,
-      transition,
-      isDragging: false
-    };
+  const sortableProps = props.isOverlay ? {
+    attributes: {},
+    listeners: {},
+    setNodeRef: null,
+    transform: null,
+    transition: undefined,
+    isDragging: true
+  } : {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging: false
+  };
 
-    const style: React.CSSProperties = {
-      transform: sortableProps.transform ? CSS.Transform.toString(sortableProps.transform) : undefined,
-      transition: sortableProps.transition,
-      cursor: sortableProps.isDragging ? 'grabbing' : 'grab'
-    };
+  const [contextMenuVisible, setContextMenuVisible] = useState(false);
+  const [contextMenuPos, setContextMenuPos] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
+  const [itemColor, setItemColor] = useState<string>("");
 
-    const className = `btn shadow-none sortable-item ${props.isActive ? "active" : ""} ${sortableProps.isDragging ? "dragging" : ""}`;
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setContextMenuPos({ x: e.clientX, y: e.clientY });
+    setContextMenuVisible(true);
+  };
 
-    return (
-      <li className={className} data-testid={props.children ? props.children : null} ref={sortableProps.setNodeRef} style={style} {...sortableProps.attributes} {...sortableProps.listeners}>
+  const handleColorChange = (color: string) => {
+    setItemColor(color);
+    setContextMenuVisible(false);
+  };
+
+  const handleClickAnywhere = () => {
+    setContextMenuVisible(false);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("click", handleClickAnywhere);
+    return () => window.removeEventListener("click", handleClickAnywhere);
+  }, []);
+
+  const style: React.CSSProperties = {
+    transform: sortableProps.transform ? CSS.Transform.toString(sortableProps.transform) : undefined,
+    transition: sortableProps.transition,
+    cursor: sortableProps.isDragging ? 'grabbing' : 'grab',
+    backgroundColor: itemColor
+  };
+
+  const className = `btn shadow-none sortable-item ${props.isActive ? "active" : ""} ${sortableProps.isDragging ? "dragging" : ""}`;
+
+  return (
+    <>
+      <li
+        className={className}
+        data-testid={props.children ? props.children : null}
+        ref={sortableProps.setNodeRef}
+        style={style}
+        onContextMenu={handleContextMenu}
+        {...sortableProps.attributes}
+        {...sortableProps.listeners}
+      >
         {props.children ? props.children : null}
       </li>
-    )
-})
+
+      {contextMenuVisible && (
+        <ul
+          className="context-menu"
+          style={{
+            position: 'fixed',
+            top: contextMenuPos.y,
+            left: contextMenuPos.x,
+            backgroundColor: '#fff',
+            border: '1px solid #ccc',
+            padding: '0.5rem',
+            listStyle: 'none',
+            zIndex: 1000
+          }}
+        >
+          <li onClick={() => handleColorChange('lightblue')}>Azul</li>
+          <li onClick={() => handleColorChange('lightgreen')}>Verde</li>
+          <li onClick={() => handleColorChange('lightcoral')}>Vermelho</li>
+          <li onClick={() => handleColorChange('')}>Resetar</li>
+        </ul>
+      )}
+    </>
+  );
+});
+
