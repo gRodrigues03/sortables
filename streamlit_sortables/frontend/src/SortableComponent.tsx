@@ -75,7 +75,14 @@ function SortableComponent(props: SortableComponentProps) {
   const [clonedItems, setClonedItems] = useState(props.items);
   const [activeItem, setActiveItem] = useState(null);
   const [itemColors, setItemColors] = useState<Record<string, string>>({});
+  useEffect(() => {
+  const pivotedAndColors = items.flatMap(({ header, items }) =>
+    items.map(item => ({ item, header, color: itemColors[item] || "" }))
+  );
 
+  Streamlit.setComponentValue(pivotedAndColors);
+  Streamlit.setFrameHeight();
+}, [items, itemColors]);
   const sensors = useSensors(
     useSensor(MouseSensor, {
       activationConstraint: {
@@ -144,15 +151,6 @@ function SortableComponent(props: SortableComponentProps) {
     setActiveItem(null);
     setItems(clonedItems);
   }
-
-  useEffect(() => {
-  const pivotedAndColors = items.flatMap(({ header, items }) =>
-    items.map(item => ({ item, header, color: itemColors[item] || "" }))
-  );
-
-  Streamlit.setComponentValue(pivotedAndColors);
-  Streamlit.setFrameHeight();
-}, [items, itemColors]);
 
   function handleDragEnd(event: any) {
     setActiveItem(null);
