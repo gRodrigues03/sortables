@@ -107,7 +107,7 @@ function SortableComponent(props: SortableComponentProps) {
 
   const groupedItemsMap = new Map<string, string[]>();
 
-  items.forEach(({ header, items }) => {
+  containers.forEach(({ header, items }) => {
     groupedItemsMap.set(header, items);
   });
 
