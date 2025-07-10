@@ -105,6 +105,12 @@ function SortableComponent(props: SortableComponentProps) {
     .filter(header => !props.availableHeaders.includes(header))
   ];
 
+  const groupedItemsMap = new Map<string, string[]>();
+
+  items.forEach(({ header, items }) => {
+    groupedItemsMap.set(header, items);
+  });
+
   containers = availableHeaders.map(header => ({
       header,
       items: groupedItemsMap.get(header) ?? []
