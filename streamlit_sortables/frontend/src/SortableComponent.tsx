@@ -104,7 +104,7 @@ function SortableComponent(props: SortableComponentProps) {
 
   const availableHeaders = props.availableHeaders.length > 0
   ? props.availableHeaders
-  : [...new Set(items.map(({ header }) => header))];
+  : Array.from(new Set(items.map(({ header }) => header)));
 
 
   const initialColors = (() => {
