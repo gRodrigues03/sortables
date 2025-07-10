@@ -62,8 +62,8 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   };
 
   React.useEffect(() => {
-    window.addEventListener("mousedown", handleClickAnywhere);
-    return () => window.removeEventListener("mousedown", handleClickAnywhere);
+    window.addEventListener("click", handleClickAnywhere);
+    return () => window.removeEventListener("click", handleClickAnywhere);
   }, []);
 
   const style: React.CSSProperties = {
