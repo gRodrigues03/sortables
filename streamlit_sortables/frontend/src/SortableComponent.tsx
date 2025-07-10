@@ -79,7 +79,7 @@ function Container(props: ContainerProps) {
 
 interface SortableComponentProps {
   direction?: Direction,
-  availableColors?: AvailableColorProps,
+  availableColors?: AvailableColorProps[],
   items: ContainerDescription[]
 }
 
@@ -97,7 +97,7 @@ function SortableComponent(props: SortableComponentProps) {
       header,
       items
     }));
-  const availableColors = props.availableColors ?? [
+  const availableColors: AvailableColorProps[] = props.availableColors ?? [
   { name: "Azul", value: "lightblue" },
   { name: "Verde", value: "lightgreen" },
   { name: "Vermelho", value: "lightcoral" },
