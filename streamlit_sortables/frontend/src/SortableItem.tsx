@@ -1,6 +1,9 @@
 import React, { ReactNode, FunctionComponent, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import {
+  Streamlit
+} from "streamlit-component-lib"
 
 import './SortableComponent.css';
 
@@ -43,9 +46,11 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   const [itemColor, setItemColor] = useState<string>("");
 
   const handleContextMenu = (e: React.MouseEvent) => {
+    setContextMenuVisible(false);
     e.preventDefault();
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
+    Streamlit.setComponentHeight();
   };
 
   const handleColorChange = (color: string) => {
@@ -53,10 +58,12 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
       props.onColorChange(color);
     }
     setContextMenuVisible(false);
+    Streamlit.setComponentHeight();
   };
 
   const handleClickAnywhere = () => {
     setContextMenuVisible(false);
+    Streamlit.setComponentHeight();
   };
 
   React.useEffect(() => {
