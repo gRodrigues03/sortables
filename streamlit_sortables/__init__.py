@@ -49,7 +49,7 @@ def sort_items(items: list[T],  header: Optional[str]=None, multi_containers: bo
     else:
         if not all(map(lambda item: isinstance(item, dict), items)):
             raise ValueError('items must be list[dict[str, Any]] if multi_containers is True.')
-        default_items = [{"item": item, "header": d["header"]} for d in items for item in d["items"]]
+        default_items = items
 
     component_value = _component_func(items=items, direction=direction, customStyle=custom_style, default=default_items, key=key)
 
