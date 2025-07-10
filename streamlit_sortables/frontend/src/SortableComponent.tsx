@@ -31,6 +31,7 @@ interface StreamlitArguments {
   direction?: Direction,
   items: ContainerDescription[],
   colors: AvailableColorProps[],
+  availableHeaders: string[],
   customStyle?: string
 }
 
@@ -78,6 +79,7 @@ function Container(props: ContainerProps) {
 interface SortableComponentProps {
   direction?: Direction,
   availableColors: AvailableColorProps[],
+  availableHeaders: string[],
   items: ContainerDescription[]
 }
 
@@ -99,6 +101,10 @@ function SortableComponent(props: SortableComponentProps) {
   const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(containers);
   const [activeItem, setActiveItem] = useState(null);
+
+  const availableHeaders = props.availableHeaders.length > 0
+  ? props.availableHeaders
+  : [...new Set(items.map(({ header }) => header))];
 
 
   const initialColors = (() => {
@@ -136,6 +142,8 @@ function SortableComponent(props: SortableComponentProps) {
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+
   return (
     <DndContext
       sensors={sensors}
@@ -145,7 +153,8 @@ function SortableComponent(props: SortableComponentProps) {
       onDragCancel={handleDragCancel}
     >
       {
-        items.map(({ header, items }) => {
+        props.availableHeaders.map(header => {
+          const itemsInHeader = groupedItems[header] || [];
           return (
             <Container key={header} header={header} items={items} direction={props.direction}>
               {
@@ -314,7 +323,7 @@ function SortableComponentWrapper(props: ComponentProps) {
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>
-      <SortableComponent items={items} availableColors={colors} direction={args.direction} />
+      <SortableComponent items={items} availableColors={colors} availableHeaders={props.headers} direction={args.direction} />
     </div>
   )
 }
