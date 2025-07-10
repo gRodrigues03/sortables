@@ -77,7 +77,6 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
         setContextMenuVisible(false);
         props.onContextMenuChange?.();
     }
-
   };
 
   React.useEffect(() => {
@@ -128,7 +127,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     </li>
   );
 })}
-          <li onClick={() => handleColorChange('')}>Resetar</li>
+          <li onClick={() => handleColorChange('')}>Reset</li>
         </ul>
       )}
     </>

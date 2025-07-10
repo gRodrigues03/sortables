@@ -95,11 +95,7 @@ function SortableComponent(props: SortableComponentProps) {
       header,
       items
     }));
-  const availableColors: AvailableColorProps[] = props.availableColors ?? [
-  { Azul: "blue" },
-  { Verde: "green" },
-  { Vermelho: "red" },
-];
+  const availableColors = props.availableColors;
   const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(containers);
   const [activeItem, setActiveItem] = useState(null);

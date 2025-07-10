@@ -74,7 +74,7 @@ custom_style = """
     counter-increment: item;
 }
 """
-sorted_items = sort_items(original_items, multi_containers=True, custom_style=custom_style)
+sorted_items = sort_items(original_items, custom_style=custom_style)
 
 st.write(f'original_items: {original_items}')
 st.write(f'sorted_items: {sorted_items}')
