@@ -167,6 +167,7 @@ function SortableComponent(props: SortableComponentProps) {
                     }}
                     isActive={item === activeItem}
                     color={itemColors[item] || ""}
+                    availableColors={availableColors}
                     >{item}</SortableItem>
                   )
                 })
