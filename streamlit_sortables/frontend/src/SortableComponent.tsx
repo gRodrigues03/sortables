@@ -105,7 +105,7 @@ function SortableComponent(props: SortableComponentProps) {
     .filter(header => !props.availableHeaders.includes(header))
   ];
 
-  containers = safeAvailableHeaders.map(header => ({
+  containers = availableHeaders.map(header => ({
       header,
       items: groupedItemsMap.get(header) ?? []
   }));
