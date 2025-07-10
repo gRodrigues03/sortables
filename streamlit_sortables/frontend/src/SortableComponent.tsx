@@ -160,7 +160,6 @@ function SortableComponent(props: SortableComponentProps) {
     })
   );
 
-  console.log(groupedItems);
   return (
     <DndContext
       sensors={sensors}
@@ -215,7 +214,6 @@ function SortableComponent(props: SortableComponentProps) {
   }
 
   function handleDragCancel() {
-    console.log('canceled')
     setActiveItem(null);
     setItems(clonedItems);
   }
@@ -279,7 +277,6 @@ function SortableComponent(props: SortableComponentProps) {
     if (activeContainerIndex === overContainerIndex) {
       return
     }
-    console.log(active.id, over.id)
 
     const activeItemIndex = items[activeContainerIndex].items.indexOf(active.id);
     const activeItem = items[activeContainerIndex].items[activeItemIndex];
