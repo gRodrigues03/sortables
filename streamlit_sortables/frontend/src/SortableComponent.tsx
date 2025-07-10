@@ -85,7 +85,7 @@ function SortableComponent(props: SortableComponentProps) {
     }));
 
     const [items, setItems] = useState(containers);
-  const [clonedItems, setClonedItems] = useState(props.items);
+  const [clonedItems, setClonedItems] = useState(containers);
   const [activeItem, setActiveItem] = useState(null);
   const [itemColors, setItemColors] = useState<Record<string, string>>({});
   useEffect(() => {
