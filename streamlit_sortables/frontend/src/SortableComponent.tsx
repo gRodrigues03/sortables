@@ -102,9 +102,12 @@ function SortableComponent(props: SortableComponentProps) {
   const [clonedItems, setClonedItems] = useState(containers);
   const [activeItem, setActiveItem] = useState(null);
 
-  const availableHeaders = props.availableHeaders.length > 0
-  ? props.availableHeaders
-  : Array.from(new Set(items.map(({ header }) => header)));
+  const availableHeaders = [
+  ...props.availableHeaders,
+  ...items
+    .map(({ header }) => header)
+    .filter(header => !props.availableHeaders.includes(header))
+];
 
 
   const initialColors = (() => {
