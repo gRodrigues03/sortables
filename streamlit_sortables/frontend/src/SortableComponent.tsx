@@ -159,6 +159,7 @@ function SortableComponent(props: SortableComponentProps) {
                   return (
                     <SortableItem
                     id={item}
+                    ghost={false}
                     onColorChange={(color) => {
                     setItemColors(prev => ({ ...prev, [item]: color }));
                     }}
@@ -179,6 +180,7 @@ function SortableComponent(props: SortableComponentProps) {
       <DragOverlay>
         <SortableItem
     id={activeItem || ""}
+    ghost={true}
     isOverlay={true}
     color={itemColors[activeItem || ""] || ""}
   >

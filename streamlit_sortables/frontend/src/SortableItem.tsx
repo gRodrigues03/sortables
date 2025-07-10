@@ -12,13 +12,14 @@ interface AvailableColorProps {
 
 export interface SortableItemProps {
   id: string,
+  ghost: boolean,
   onColorChange?: (color: string) => void,
   onContextMenuChange?: () => void,
   isActive?: boolean,
   children?: ReactNode,
   isOverlay?: boolean,
   color?: string,
-  availableColors: AvailableColorProps[]
+  availableColors?: AvailableColorProps[]
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
@@ -46,6 +47,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     isDragging: false
   };
 
+  const availableColors = props.availableColors ?? [];
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuPos, setContextMenuPos] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
   const [itemColor, setItemColor] = useState<string>("");
@@ -90,7 +92,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   };
 
   const className = `btn shadow-none sortable-item ${props.isActive ? "active" : ""} ${sortableProps.isDragging ? "dragging" : ""}`;
-
+    if (!props.ghost) {
   return (
     <>
       <li
@@ -126,4 +128,21 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
       )}
     </>
   );
+  } else {
+      return (
+    <>
+      <li
+        className={className}
+        data-testid={props.children ? props.children : null}
+        ref={sortableProps.setNodeRef}
+        style={style}
+        {...sortableProps.attributes}
+        {...sortableProps.listeners}
+      >
+        {props.children ? props.children : null}
+      </li>
+    </>
+  );
+      }
 });
+
