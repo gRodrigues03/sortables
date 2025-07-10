@@ -48,7 +48,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     e.preventDefault();
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
-    onContextMenuChange();
+    props.onContextMenuChange();
   };
 
   const handleColorChange = (color: string) => {
@@ -56,12 +56,12 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
       props.onColorChange(color);
     }
     setContextMenuVisible(false);
-    onContextMenuChange();
+     props.onContextMenuChange();
   };
 
   const handleClickAnywhere = () => {
     setContextMenuVisible(false);
-    onContextMenuChange();
+    props.onContextMenuChange();
   };
 
   React.useEffect(() => {
