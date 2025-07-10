@@ -156,9 +156,9 @@ function SortableComponent(props: SortableComponentProps) {
         props.availableHeaders.map(header => {
           const itemsInHeader = groupedItems[header] || [];
           return (
-            <Container key={header} header={header} items={items} direction={props.direction}>
+            <Container key={header} header={header} items={itemsInHeader} direction={props.direction}>
               {
-                items.map(item => {
+                itemsInHeader.map(item => {
                   return (
                     <SortableItem
                     id={item}
