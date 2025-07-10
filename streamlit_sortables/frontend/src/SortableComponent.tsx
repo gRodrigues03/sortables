@@ -318,12 +318,13 @@ function SortableComponentWrapper(props: ComponentProps) {
   const args: StreamlitArguments = props.args;
   const items = args.items;
   const colors = args.colors;
+  const headers = args.headers;
   const className = 'sortable-component ' + args.direction;
   useEffect(() => Streamlit.setFrameHeight());
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>
-      <SortableComponent items={items} availableColors={colors} availableHeaders={props.headers} direction={args.direction} />
+      <SortableComponent items={items} availableColors={colors} availableHeaders={headers} direction={args.direction} />
     </div>
   )
 }
