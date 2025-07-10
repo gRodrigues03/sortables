@@ -35,7 +35,7 @@ interface StreamlitArguments {
 
 interface ContainerDescription {
   item: string,
-  header: string,
+  header?: string,
   color?: string
 }
 
