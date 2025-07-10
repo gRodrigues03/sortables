@@ -94,9 +94,6 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
             position: 'fixed',
             top: contextMenuPos.y,
             left: contextMenuPos.x,
-            backgroundColor: '#fff',
-            border: '1px solid #ccc',
-            padding: '0.5rem',
             listStyle: 'none',
             zIndex: 1000
           }}

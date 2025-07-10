@@ -9,6 +9,8 @@ body {
 }
 
 .context-menu {
+    border-radius: .5rem;
+    border: '1px solid #ccc';
     background-color: var(--secondary-background-color)
 }
 
@@ -46,6 +48,7 @@ body {
     color: white;
     padding-top: 3px;
     padding-bottom: 3px;
+    border-radius: .5rem !important;
     height: 100%;
     cursor: grab;
     user-select: none
