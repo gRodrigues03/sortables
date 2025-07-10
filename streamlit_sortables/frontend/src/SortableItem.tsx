@@ -1,10 +1,6 @@
 import React, { ReactNode, FunctionComponent, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import {
-  Streamlit,
-  withStreamlitConnection
-} from "streamlit-component-lib"
 
 import './SortableComponent.css';
 
@@ -14,7 +10,8 @@ export interface SortableItemProps {
   children?: ReactNode,
   isOverlay?: boolean,
   color?: string,
-  onColorChange?: (color: string) => void;
+  onColorChange?: (color: string) => void,
+  onContextMenuChange?: () => void
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
@@ -51,7 +48,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     e.preventDefault();
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
-    Streamlit.setFrameHeight();
+    onContextMenuChange();
   };
 
   const handleColorChange = (color: string) => {
@@ -59,12 +56,12 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
       props.onColorChange(color);
     }
     setContextMenuVisible(false);
-    Streamlit.setFrameHeight();
+    onContextMenuChange();
   };
 
   const handleClickAnywhere = () => {
     setContextMenuVisible(false);
-    Streamlit.setFrameHeight();
+    onContextMenuChange();
   };
 
   React.useEffect(() => {
@@ -115,5 +112,3 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     </>
   );
 });
-
-export default withStreamlitConnection(SortableItem)

@@ -119,7 +119,11 @@ function SortableComponent(props: SortableComponentProps) {
                     color={itemColors[item] || ""}
                     onColorChange={(color) => {
                     setItemColors(prev => ({ ...prev, [item]: color }));
-                    }}>{item}</SortableItem>
+                    }}
+                    onContextMenuChange={() => {
+                      Streamlit.setFrameHeight();
+                    }}
+                    >{item}</SortableItem>
                   )
                 })
               }
