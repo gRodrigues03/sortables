@@ -34,8 +34,9 @@ interface StreamlitArguments {
 }
 
 interface ContainerDescription {
+  item: string,
   header: string,
-  item: string
+  color?: string
 }
 
 
@@ -91,10 +92,22 @@ function SortableComponent(props: SortableComponentProps) {
       items
     }));
 
-    const [items, setItems] = useState(containers);
+  const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(containers);
   const [activeItem, setActiveItem] = useState(null);
-  const [itemColors, setItemColors] = useState<Record<string, string>>({});
+
+
+  const initialColors = React.useMemo(() => {
+  const map: Record<string, string> = {};
+  props.items.forEach(({ item, color }) => {
+    if (color) map[item] = color;
+  });
+  return map;
+  }, [props.items]);
+
+  const [itemColors, setItemColors] = useState<Record<string, string>>(initialColors);
+
+
   useEffect(() => {
   const pivotedAndColors = items.flatMap(({ header, items }) =>
     items.map(item => ({ item, header, color: itemColors[item] || "" }))

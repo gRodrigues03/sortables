@@ -13,9 +13,9 @@ st.write('----')
 st.write('Sort items in multiple containers.')
 items = \
 [
-  { 'item': 'item1', 'header': 'container1' },
-  { 'item': 'item2', 'header': 'container1' },
-  { 'item': 'item3', 'header': 'container1' },
+  { 'item': 'item1', 'header': 'container1', 'color': 'blue' },
+  { 'item': 'item2', 'header': 'container1', 'color': 'red' },
+  { 'item': 'item3', 'header': 'container1', 'color': 'black' },
   { 'item': 'item4', 'header': 'container2' },
   { 'item': 'item5', 'header': 'container2' },
   { 'item': 'item6', 'header': 'container2' }
@@ -32,9 +32,9 @@ st.write(sorted_items)
 st.write('----')
 st.write('Custom style.')
 original_items = [
-  { 'item': 'item1', 'header': 'container1' },
-  { 'item': 'item2', 'header': 'container1' },
-  { 'item': 'item3', 'header': 'container1' },
+  { 'item': 'item1', 'header': 'container1', 'color': 'blue' },
+  { 'item': 'item2', 'header': 'container1', 'color': 'red' },
+  { 'item': 'item3', 'header': 'container1', 'color': 'black' },
   { 'item': 'item4', 'header': 'container2' },
   { 'item': 'item5', 'header': 'container2' },
   { 'item': 'item6', 'header': 'container2' }
