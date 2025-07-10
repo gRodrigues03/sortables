@@ -18,7 +18,7 @@ export interface SortableItemProps {
   children?: ReactNode,
   isOverlay?: boolean,
   color?: string,
-  availableColors?: AvailableColorProps[]
+  availableColors: AvailableColorProps[]
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
