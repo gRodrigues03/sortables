@@ -116,7 +116,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
             zIndex: 1000
           }}
         >
-          {props.colors.map(({ name, value }) => (
+          {props.availableColors.map(({ name, value }) => (
             <li key={value} onClick={() => handleColorChange(value)}>
               {name}
             </li>
