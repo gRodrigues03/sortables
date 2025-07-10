@@ -93,21 +93,29 @@ function SortableComponent(props: SortableComponentProps) {
       groupedItems[key].push(item);
     });
 
-    const containers = Object.entries(groupedItems).map(([header, items]) => ({
+    let containers = Object.entries(groupedItems).map(([header, items]) => ({
       header,
       items
     }));
-  const availableColors = props.availableColors;
-  const [items, setItems] = useState(containers);
-  const [clonedItems, setClonedItems] = useState(containers);
-  const [activeItem, setActiveItem] = useState(null);
 
   const availableHeaders = [
   ...props.availableHeaders,
   ...items
     .map(({ header }) => header)
     .filter(header => !props.availableHeaders.includes(header))
-];
+  ];
+
+  containers = safeAvailableHeaders.map(header => ({
+      header,
+      items: groupedItemsMap.get(header) ?? []
+  }));
+
+  const availableColors = props.availableColors;
+  const [items, setItems] = useState(containers);
+  const [clonedItems, setClonedItems] = useState(containers);
+  const [activeItem, setActiveItem] = useState(null);
+
+
 
 
   const initialColors = (() => {
@@ -156,14 +164,11 @@ function SortableComponent(props: SortableComponentProps) {
       onDragCancel={handleDragCancel}
     >
       {
-        availableHeaders.map(header => {
-          const itemsInHeader = groupedItems[header] || [];
-          console.log(itemsInHeader);
-          console.log(header);
+       items.map(({ header, items }) => {
           return (
-            <Container key={header} header={header} items={itemsInHeader} direction={props.direction}>
+            <Container key={header} header={header} items={items} direction={props.direction}>
               {
-                itemsInHeader.map(item => {
+                items.map(item => {
                   return (
                     <SortableItem
                     id={item}
