@@ -156,7 +156,7 @@ function SortableComponent(props: SortableComponentProps) {
       onDragCancel={handleDragCancel}
     >
       {
-        props.availableHeaders.map(header => {
+        availableHeaders.map(header => {
           const itemsInHeader = groupedItems[header] || [];
           console.log(itemsInHeader);
           console.log(header);
