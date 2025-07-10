@@ -143,7 +143,7 @@ function SortableComponent(props: SortableComponentProps) {
     })
   );
 
-
+  console.log(groupedItems);
   return (
     <DndContext
       sensors={sensors}
@@ -155,6 +155,8 @@ function SortableComponent(props: SortableComponentProps) {
       {
         props.availableHeaders.map(header => {
           const itemsInHeader = groupedItems[header] || [];
+          console.log(itemsInHeader);
+          console.log(header);
           return (
             <Container key={header} header={header} items={itemsInHeader} direction={props.direction}>
               {
