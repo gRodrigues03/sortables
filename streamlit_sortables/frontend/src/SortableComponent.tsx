@@ -30,6 +30,7 @@ type Direction = 'horizontal' | 'vertical';
 interface StreamlitArguments {
   direction?: Direction,
   items: ContainerDescription[],
+  colors: AvailableColorProps[],
   customStyle?: string
 }
 
@@ -98,9 +99,9 @@ function SortableComponent(props: SortableComponentProps) {
       items
     }));
   const availableColors: AvailableColorProps[] = props.availableColors ?? [
-  { name: "Azul", value: "lightblue" },
-  { name: "Verde", value: "lightgreen" },
-  { name: "Vermelho", value: "lightcoral" },
+  { name: "Azul", value: "blue" },
+  { name: "Verde", value: "green" },
+  { name: "Vermelho", value: "red" },
 ];
   const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(containers);
@@ -314,12 +315,13 @@ function SortableComponentWrapper(props: ComponentProps) {
   
   const args: StreamlitArguments = props.args;
   const items = args.items;
+  const colors = args.colors;
   const className = 'sortable-component ' + args.direction;
   useEffect(() => Streamlit.setFrameHeight());
   return (
     <div className={className}> 
       <style>{args.customStyle}</style>
-      <SortableComponent items={items} direction={args.direction} />
+      <SortableComponent items={items} availableColors={colors} direction={args.direction} />
     </div>
   )
 }
