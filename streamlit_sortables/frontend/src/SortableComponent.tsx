@@ -100,7 +100,7 @@ function SortableComponent(props: SortableComponentProps) {
 
   const availableHeaders = [
   ...props.availableHeaders,
-  ...items
+  ...containers
     .map(({ header }) => header)
     .filter(header => !props.availableHeaders.includes(header))
   ];
