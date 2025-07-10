@@ -1,3 +1,19 @@
+## BEWARE! Silly code!
+
+This code was made 20% by AI and 80% by me stumbling upon the concept of typescript and react!
+(which is probably worse than if it was 100% AI)
+...And it is tailored to my personal use.
+
+I added:
+- an optional colors dropdown
+- optional ordered multiple headers list (if a header is not mentioned in the items argument, it will be displayed as an empty container)
+
+I changed:
+- The entire data structure both sent to and received from the component, it's now [{item: itemName, header (optional): containerName, color (optional): cssColor}]
+- Unified multi_containers and single containers
+
+I still have to figure out the license file, but anyway here's the original README.md:
+
 # Streamlit Sortables
 
 Streamlit Sortables is a component for Streamlit applications that allows users to create sortable lists. This component enhances the interactivity of your Streamlit apps by enabling users to sort lists of strings in the UI.
