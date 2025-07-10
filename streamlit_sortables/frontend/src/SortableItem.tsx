@@ -50,7 +50,7 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     e.preventDefault();
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
-    Streamlit.setComponentHeight();
+    Streamlit.setFrameHeight();
   };
 
   const handleColorChange = (color: string) => {
@@ -58,12 +58,12 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
       props.onColorChange(color);
     }
     setContextMenuVisible(false);
-    Streamlit.setComponentHeight();
+    Streamlit.setFrameHeight();
   };
 
   const handleClickAnywhere = () => {
     setContextMenuVisible(false);
-    Streamlit.setComponentHeight();
+    Streamlit.setFrameHeight();
   };
 
   React.useEffect(() => {
