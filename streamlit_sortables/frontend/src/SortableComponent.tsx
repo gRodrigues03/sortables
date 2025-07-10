@@ -38,6 +38,13 @@ interface ContainerDescription {
   item: string
 }
 
+
+interface ContainerDescriptionUnpivoted {
+  header: string,
+  item: string
+}
+
+
 interface ContainerProps {
   header: string,
   items: string[],
@@ -258,7 +265,7 @@ function SortableComponent(props: SortableComponentProps) {
     return items.findIndex(({ items }) => items.includes(item));
   }
 
-  function isSameOrder(items1: ContainerDescription[], items2: ContainerDescription[]) {
+  function isSameOrder(items1: ContainerDescriptionUnpivoted[], items2: ContainerDescriptionUnpivoted[]) {
     if (items1.length !== items2.length) {
       return false;
     }
