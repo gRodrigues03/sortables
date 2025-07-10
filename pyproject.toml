@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "streamlit-sortables"
-version = "0.3.1"
-description = "A Streamlit component to provide sortable list."
-license = "Apache License (2.0)"
-authors = ["ohtaman <ohtamans@gmail.com>"]
+name = "streamlit-colored-sortables"
+version = "0.4.0"
+description = "A Streamlit component to provide a colored sortable list."
+license = "MIT"
+authors = ["Gabriel Rodrigues <gabriel@rdrgs.com.br>", "ohtaman <ohtamans@gmail.com>"]
 readme = "README.md"
-homepage = "https://github.com/ohtaman/streamlit-sortables"
-keywords = ["streamlit", "sortable", "list"]
+homepage = "https://github.com/gRodrigues03/streamlit-colored-sortables"
+keywords = ["streamlit", "sortable", "list", "component"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",

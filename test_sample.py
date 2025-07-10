@@ -1,5 +1,5 @@
 import pytest
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 def test_sort_items_single_container():
     items = ['item1', 'item2', 'item3']
@@ -11,6 +11,6 @@ def test_sort_items_multiple_containers():
         {'header': 'container1', 'items': ['item3', 'item1', 'item2']},
         {'header': 'container2', 'items': ['item6', 'item5', 'item4']},
     ]
-    sorted_items = sort_items(items, multi_containers=True)
+    sorted_items = sort_items(items)
     assert sorted_items[0]['items'] == ['item3', 'item1', 'item2']  # Check first container
     assert sorted_items[1]['items'] == ['item6', 'item5', 'item4']  # Check second container

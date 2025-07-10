@@ -13,6 +13,9 @@ I changed:
 - Unified multi_containers and single containers
 
 I still have to figure out the license file, but anyway here's the original README.md:
+(if any living soul wants to test this, just change it from streamlit_sortables to streamlit_colored_sortables)
+
+<hr>
 
 # Streamlit Sortables
 
@@ -42,7 +45,7 @@ Use the `sort_items` method to sort a list of strings. The return value is the s
 
 ```python
 import streamlit as st
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 original_items = ['A', 'B', 'C']
 sorted_items = sort_items(original_items)
@@ -57,10 +60,10 @@ You can pass a list of dictionaries with `multi_containers=True` to sort items a
 
 ```python
 import streamlit as st
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 original_items = [
-    {'header': 'First Container',  'items': ['A', 'B', 'C']},
+    {'header': 'First Container', 'items': ['A', 'B', 'C']},
     {'header': 'Second Container', 'items': ['D', 'E', 'F']}
 ]
 
@@ -72,11 +75,11 @@ st.write(f'Sorted items: {sorted_items}')
 
 ### Theme Customization
 
-Here's a simple example of how to customize the theme by changing the background color and font size, and numbering the items. By default, styles are defined in [SortableComponent.css](streamlit_sortables/frontend/src/SortableComponent.css):
+Here's a simple example of how to customize the theme by changing the background color and font size, and numbering the items. By default, styles are defined in [SortableComponent.css](streamlit_colored_sortables/frontend/src/SortableComponent.css):
 
 ```python
 import streamlit as st
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 original_items = [
     {'header': 'Container', 'items': ['Item 1', 'Item 2', 'Item 3']}
@@ -108,10 +111,10 @@ This example demonstrates advanced CSS customization, including theme customizat
 
 ```python
 import streamlit as st
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 original_items = [
-    {'header': 'First Container',  'items': ['A', 'B', 'C']},
+    {'header': 'First Container', 'items': ['A', 'B', 'C']},
     {'header': 'Second Container', 'items': ['D', 'E', 'F']}
 ]
 

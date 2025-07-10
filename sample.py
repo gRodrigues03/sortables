@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_sortables import sort_items
+from streamlit_colored_sortables import sort_items
 
 st.title('Sortables')
 
