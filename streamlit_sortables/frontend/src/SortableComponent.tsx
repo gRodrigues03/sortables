@@ -41,7 +41,7 @@ interface ContainerDescription {
 
 interface ContainerDescriptionUnpivoted {
   header: string,
-  item: string
+  items: string[]
 }
 
 
