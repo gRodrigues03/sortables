@@ -4,7 +4,14 @@ from streamlit_sortables import sort_items
 st.title('Sortables')
 
 st.write('Sort items in a single container.')
-items = ['item1', 'item2', 'item3']
+items = [
+  { 'item': 'item1', 'color': 'blue' },
+  { 'item': 'item2', 'color': 'red' },
+  { 'item': 'item3', 'color': 'black' },
+  { 'item': 'item4' },
+  { 'item': 'item5' },
+  { 'item': 'item6' }
+]
 sorted_items = sort_items(items)
 st.write(sorted_items)
 
