@@ -2,7 +2,8 @@ import React, { ReactNode, FunctionComponent, useState } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import {
-  Streamlit
+  Streamlit,
+  withStreamlitConnection
 } from "streamlit-component-lib"
 
 import './SortableComponent.css';
@@ -115,3 +116,4 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   );
 });
 
+export default withStreamlitConnection(SortableItem)
