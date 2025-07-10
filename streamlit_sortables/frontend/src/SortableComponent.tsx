@@ -31,7 +31,7 @@ interface StreamlitArguments {
   direction?: Direction,
   items: ContainerDescription[],
   colors: AvailableColorProps[],
-  availableHeaders: string[],
+  headers: string[],
   customStyle?: string
 }
 
