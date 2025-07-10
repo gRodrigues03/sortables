@@ -71,7 +71,23 @@ interface SortableComponentProps {
 }
 
 function SortableComponent(props: SortableComponentProps) {
-  const [items, setItems] = useState(props.items);
+      // Convertendo para estrutura agrupada
+    const groupedItems: Record<string, string[]> = {};
+    props.items.forEach(({ item, header }) => {
+      if (!groupedItems[header]) {
+        groupedItems[header] = [];
+      }
+      groupedItems[header].push(item);
+    });
+
+    // Convertendo para array de objetos como antes
+    const containers = Object.entries(groupedItems).map(([header, items]) => ({
+      header,
+      items
+    }));
+
+    // Armazenar como state
+    const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(props.items);
   const [activeItem, setActiveItem] = useState(null);
   const [itemColors, setItemColors] = useState<Record<string, string>>({});
