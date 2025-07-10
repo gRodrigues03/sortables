@@ -44,7 +44,7 @@ def sort_items(items: list[T],  header: Optional[str]=None, multi_containers: bo
         if not all(map(lambda item: isinstance(item, str), items)):
             raise ValueError('items must be list[str] if multi_containers is False.')
 
-        items = [{'header': header, 'items': items}]
+        items = [{'item': item, 'header': header} for item in items]
         default_items = items
     else:
         if not all(map(lambda item: isinstance(item, dict), items)):
