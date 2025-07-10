@@ -44,7 +44,6 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   const [itemColor, setItemColor] = useState<string>("");
 
   const handleContextMenu = (e: React.MouseEvent) => {
-    setContextMenuVisible(false);
     e.preventDefault();
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
@@ -57,14 +56,14 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     props.onContextMenuChange?.();
   };
 
-  const handleClickAnywhere = () => {
+  const handleClickAnywhere = (e: MouseEvent) => {
     setContextMenuVisible(false);
     props.onContextMenuChange?.();
   };
 
   React.useEffect(() => {
-    window.addEventListener("click", handleClickAnywhere);
-    return () => window.removeEventListener("click", handleClickAnywhere);
+    window.addEventListener("mousedown", handleClickAnywhere);
+    return () => window.removeEventListener("mousedown", handleClickAnywhere);
   }, []);
 
   const style: React.CSSProperties = {
