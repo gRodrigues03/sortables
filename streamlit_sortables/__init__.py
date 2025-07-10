@@ -10,7 +10,7 @@ parent_dir = os.path.dirname(os.path.abspath(__file__))
 build_dir = os.path.join(parent_dir, "frontend/build")
 _component_func = components.declare_component("sortable_items", path=build_dir)
 
-def sort_items(items: dict[str, list[str]], multi_containers: bool=False, direction: str="horizontal", custom_style: Optional[str]=None, key: Any=None) -> list[T]:
+def sort_items(items: dict[str, list[str]], colors=[{'name': 'Azul', 'value': 'lightblue'}, {'name': 'Verde', 'value': 'lightgreen'}, {'name': 'Vermelho', 'value': 'red'}], multi_containers: bool=False, direction: str="horizontal", custom_style: Optional[str]=None, key: Any=None) -> list[T]:
     """Create a new instance of "sortable_items".
 
     Parameters

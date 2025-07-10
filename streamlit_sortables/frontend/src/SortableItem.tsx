@@ -4,6 +4,12 @@ import { CSS } from '@dnd-kit/utilities';
 
 import './SortableComponent.css';
 
+
+interface AvailableColorProps {
+  name: string,
+  value: string
+}
+
 export interface SortableItemProps {
   id: string,
   onColorChange?: (color: string) => void,
@@ -11,7 +17,8 @@ export interface SortableItemProps {
   isActive?: boolean,
   children?: ReactNode,
   isOverlay?: boolean,
-  color?: string
+  color?: string,
+  availableColors?: AvailableColorProps[]
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
@@ -109,9 +116,11 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
             zIndex: 1000
           }}
         >
-          <li onClick={() => handleColorChange('lightblue')}>Azul</li>
-          <li onClick={() => handleColorChange('lightgreen')}>Verde</li>
-          <li onClick={() => handleColorChange('lightcoral')}>Vermelho</li>
+          {props.colors.map(({ name, value }) => (
+            <li key={value} onClick={() => handleColorChange(value)}>
+              {name}
+            </li>
+          ))}
           <li onClick={() => handleColorChange('')}>Resetar</li>
         </ul>
       )}
