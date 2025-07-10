@@ -113,16 +113,15 @@ function SortableComponent(props: SortableComponentProps) {
                 items.map(item => {
                   return (
                     <SortableItem
-                    key={item}
                     id={item}
-                    isActive={item === activeItem}
-                    color={itemColors[item] || ""}
                     onColorChange={(color) => {
                     setItemColors(prev => ({ ...prev, [item]: color }));
                     }}
                     onContextMenuChange={() => {
                       Streamlit.setFrameHeight();
                     }}
+                    isActive={item === activeItem}
+                    color={itemColors[item] || ""}
                     >{item}</SortableItem>
                   )
                 })

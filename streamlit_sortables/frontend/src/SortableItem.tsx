@@ -6,12 +6,12 @@ import './SortableComponent.css';
 
 export interface SortableItemProps {
   id: string,
+  onColorChange: (color: string) => void,
+  onContextMenuChange: () => void,
   isActive?: boolean,
   children?: ReactNode,
   isOverlay?: boolean,
-  color?: string,
-  onColorChange: (color: string) => void,
-  onContextMenuChange: () => void
+  color?: string
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
