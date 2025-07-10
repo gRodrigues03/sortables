@@ -35,7 +35,7 @@ interface StreamlitArguments {
 
 interface ContainerDescription {
   header: string,
-  items: string[]
+  items: string
 }
 
 interface ContainerProps {
@@ -71,7 +71,6 @@ interface SortableComponentProps {
 }
 
 function SortableComponent(props: SortableComponentProps) {
-      // Convertendo para estrutura agrupada
     const groupedItems: Record<string, string[]> = {};
     props.items.forEach(({ item, header }) => {
       if (!groupedItems[header]) {
@@ -80,13 +79,11 @@ function SortableComponent(props: SortableComponentProps) {
       groupedItems[header].push(item);
     });
 
-    // Convertendo para array de objetos como antes
     const containers = Object.entries(groupedItems).map(([header, items]) => ({
       header,
       items
     }));
 
-    // Armazenar como state
     const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(props.items);
   const [activeItem, setActiveItem] = useState(null);
