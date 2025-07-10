@@ -10,8 +10,8 @@ export interface SortableItemProps {
   children?: ReactNode,
   isOverlay?: boolean,
   color?: string,
-  onColorChange?: (color: string) => void,
-  onContextMenuChange?: () => void
+  onColorChange: (color: string) => void,
+  onContextMenuChange: () => void
 }
 
 export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
@@ -52,11 +52,9 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   };
 
   const handleColorChange = (color: string) => {
-     if (props.onColorChange) {
-      props.onColorChange(color);
-    }
+    props.onColorChange(color);
     setContextMenuVisible(false);
-     props.onContextMenuChange();
+    props.onContextMenuChange();
   };
 
   const handleClickAnywhere = () => {
