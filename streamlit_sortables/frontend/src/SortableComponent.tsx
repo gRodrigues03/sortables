@@ -46,10 +46,7 @@ interface ContainerDescriptionUnpivoted {
   items: string[]
 }
 
-interface AvailableColorProps {
-  name: string,
-  value: string
-}
+type AvailableColorProps = { [name: string]: string };
 
 interface ContainerProps {
   header: string,
@@ -80,7 +77,7 @@ function Container(props: ContainerProps) {
 
 interface SortableComponentProps {
   direction?: Direction,
-  availableColors?: AvailableColorProps[],
+  availableColors: AvailableColorProps[],
   items: ContainerDescription[]
 }
 
@@ -99,9 +96,9 @@ function SortableComponent(props: SortableComponentProps) {
       items
     }));
   const availableColors: AvailableColorProps[] = props.availableColors ?? [
-  { name: "Azul", value: "blue" },
-  { name: "Verde", value: "green" },
-  { name: "Vermelho", value: "red" },
+  { Azul: "blue" },
+  { Verde: "green" },
+  { Vermelho: "red" },
 ];
   const [items, setItems] = useState(containers);
   const [clonedItems, setClonedItems] = useState(containers);

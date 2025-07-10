@@ -27,13 +27,13 @@ items = \
   { 'item': 'item5', 'header': 'container2' },
   { 'item': 'item6', 'header': 'container2' }
 ]
-sorted_items = sort_items(items, multi_containers=True)
+sorted_items = sort_items(items, colors=[{'Red': 'red'}])
 st.write(sorted_items)
 
 st.write('----')
 st.write('Lots of items in a single container.')
 
-sorted_items = sort_items(items, colors=[], multi_containers=True, direction='vertical')
+sorted_items = sort_items(items, direction='vertical')
 st.write(sorted_items)
 
 st.write('----')

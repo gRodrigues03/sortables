@@ -10,14 +10,13 @@ parent_dir = os.path.dirname(os.path.abspath(__file__))
 build_dir = os.path.join(parent_dir, "frontend/build")
 _component_func = components.declare_component("sortable_items", path=build_dir)
 
-def sort_items(items: dict[str, list[str]], colors=[{'name': 'Azul', 'value': 'lightblue'}, {'name': 'Amarelo', 'value': 'yellow'}, {'name': 'Vermelho', 'value': 'red'}], multi_containers: bool=False, direction: str="horizontal", custom_style: Optional[str]=None, key: Any=None) -> list[T]:
+def sort_items(items: dict[str, list[str]], colors: list[dict]=(), direction: str="horizontal", custom_style: Optional[str]=None, key: Any=None) -> list[T]:
     """Create a new instance of "sortable_items".
 
     Parameters
     ----------
     colors
     items : list[str] or dict[str, list[str]]
-    multi_containers: bool
     direction: str
     custom_style: str or None
         Custom CSS styles to apply to the component. Defaults to None.
@@ -42,12 +41,4 @@ def sort_items(items: dict[str, list[str]], colors=[{'name': 'Azul', 'value': 'l
         raise ValueError('items must be list[dict[str, Any]]')
     default_items = items
 
-    component_value = _component_func(items=items, colors=colors, direction=direction, customStyle=custom_style, default=default_items, key=key)
-
-    # We could modify the value returned from the component if we wanted.
-    # There's no need to do this in our simple example - but it's an option.
-    if multi_containers:
-        return component_value
-    else:
-        return component_value
-
+    return _component_func(items=items, colors=colors, direction=direction, customStyle=custom_style, default=default_items, key=key)

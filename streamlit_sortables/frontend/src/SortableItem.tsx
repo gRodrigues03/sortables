@@ -5,10 +5,7 @@ import { CSS } from '@dnd-kit/utilities';
 import './SortableComponent.css';
 
 
-interface AvailableColorProps {
-  name: string,
-  value: string
-}
+type AvailableColorProps = { [name: string]: string };
 
 export interface SortableItemProps {
   id: string,
@@ -118,11 +115,14 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
             zIndex: 1000
           }}
         >
-          {availableColors.map(({ name, value }) => (
-            <li key={value} onClick={() => handleColorChange(value)}>
-              {name}
-            </li>
-          ))}
+          {availableColors.map((colorObj) => {
+  const [name, value] = Object.entries(colorObj)[0];
+  return (
+    <li key={value} onClick={() => handleColorChange(value)}>
+      {name}
+    </li>
+  );
+})}
           <li onClick={() => handleColorChange('')}>Resetar</li>
         </ul>
       )}
