@@ -81,10 +81,11 @@ interface SortableComponentProps {
 function SortableComponent(props: SortableComponentProps) {
     const groupedItems: Record<string, string[]> = {};
     props.items.forEach(({ item, header }) => {
-      if (!groupedItems[header]) {
-        groupedItems[header] = [];
+      const key = header ?? "";
+      if (!groupedItems[key]) {
+        groupedItems[key] = [];
       }
-      groupedItems[header].push(item);
+      groupedItems[key].push(item);
     });
 
     const containers = Object.entries(groupedItems).map(([header, items]) => ({
