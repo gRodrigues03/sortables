@@ -51,6 +51,11 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
+
+    if (!availableColors || availableColors.length === 0) {
+      return;
+    }
+
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     setContextMenuVisible(true);
     props.onContextMenuChange?.();
