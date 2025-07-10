@@ -56,13 +56,22 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
     props.onContextMenuChange?.();
   };
 
-  const handleClickAnywhere = (e: MouseEvent) => {
+  const handleClickAnywhere = () => {
     setContextMenuVisible(false);
     props.onContextMenuChange?.();
   };
 
+  const handleOtherRightClick = (e: MouseEvent) => {
+    if (e.button === 2) {
+        setContextMenuVisible(false);
+        props.onContextMenuChange?.();
+    }
+
+  };
+
   React.useEffect(() => {
     window.addEventListener("click", handleClickAnywhere);
+    window.addEventListener("mousedown", handleOtherRightClick);
     return () => window.removeEventListener("click", handleClickAnywhere);
   }, []);
 
