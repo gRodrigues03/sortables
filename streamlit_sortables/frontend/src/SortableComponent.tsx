@@ -97,15 +97,17 @@ function SortableComponent(props: SortableComponentProps) {
   const [activeItem, setActiveItem] = useState(null);
 
 
-  const initialColors = React.useMemo(() => {
+  const initialColors = (() => {
   const map: Record<string, string> = {};
   props.items.forEach(({ item, color }) => {
-    if (color) map[item] = color;
+    if (color) {
+      map[item] = color;
+    }
   });
   return map;
-  }, [props.items]);
+})();
 
-  const [itemColors, setItemColors] = useState<Record<string, string>>(initialColors);
+  const [itemColors, setItemColors] = useState(initialColors);
 
 
   useEffect(() => {
