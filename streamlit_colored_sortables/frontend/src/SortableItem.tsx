@@ -47,7 +47,6 @@ export const SortableItem: FunctionComponent<SortableItemProps> = ((props) => {
   const availableColors = props.availableColors ?? [];
   const [contextMenuVisible, setContextMenuVisible] = useState(false);
   const [contextMenuPos, setContextMenuPos] = useState<{ x: number, y: number }>({ x: 0, y: 0 });
-  const [itemColor, setItemColor] = useState<string>("");
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
